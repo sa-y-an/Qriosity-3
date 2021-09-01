@@ -1,0 +1,102 @@
+{% extends 'base.html'%} {% load static %} {% block content %}
+<head>
+  {% block title %}
+  <title>Rules</title>
+  {% endblock %}
+</head>
+<link rel="stylesheet" href="{% static 'home/rule.css' %}" />
+
+<div class="content">
+  <div class="box">
+    <div class="panel">
+      <h2>
+        <ul>
+          <li>Rules & Regulations:</li>
+        </ul>
+      </h2>
+      <ul class="listr" style="list-style: circle inside">
+        <li>
+          Round 1 consists of a total of 10 questions carrying <b>15</b> points
+          each.
+        </li>
+        <li>
+          Upon providing answer to all of the questions in round 1, 10
+          algorithms will be revealed. Answers of the questions are to be used
+          to solve the algorithms.
+        </li>
+        <li>
+          Solving one algorithm will yield a letter of the English alphabet.
+        </li>
+        <li>
+          On solving the algorithms of round 1, all the letters so obtained can
+          be used to generate the passcode, which have a bonus point of
+          <b>60</b>
+          associated with it. The rankings on the leaderboard will determine who
+          gets to participate in round 2.
+        </li>
+        <li>Round 2 carries 5 questions carrying <b>20</b> points each .</li>
+        <li>
+          Questions of round 1 will contain hints. Requesting for hints will
+          result in the lowering of points obtainable from that particular
+          question by <b>5</b>.
+        </li>
+        <li>Questions of round 2 will not contain any hints.</li>
+        <li>
+          Answers to the questions have to be given in a format that shall not
+          contain any spaces and special characters to separate words and shall
+          all be in lower case . For example to answer for m-rna you must write
+          mrna.
+        </li>
+        <li>
+          If the question asks for three values ,the answer must be specified in
+          proper sequence of the variables without space.
+        </li>
+        <li>
+          The one who has the maximum points at the end of the quiz will be the
+          winner.
+        </li>
+        <li>
+          In case of a tie, the earlier the submission, the higher the ranking.
+        </li>
+        <li>
+          To save time, participants are advised to keep noting the answers of
+          each question of first round in a notebook for generation of final
+          passcode . In case the participant forgets the answers to the
+          questions of first round while generating the passcode, the option to
+          view all answers entered shall be provided.
+        </li>
+      </ul>
+    </div>
+
+    <br />
+    {% if user.is_authenticated %}
+    <a href="{% url 'quiz:stageone'  %}">
+      <button
+        class="btn btn-primary mb1 bg-blue"
+        type="submit"
+        value="Play"
+        class="dare"
+      >
+        Start
+      </button></a
+    >
+    {% else %}
+    <a href="{% url 'home:login' %}">
+      <button
+        class="btn btn-primary mb1 bg-blue"
+        type="submit"
+        value="Play"
+        class="dare"
+      >
+        Start
+      </button>
+      {% endif %}
+    </a>
+  </div>
+</div>
+
+<script>
+  console.log("Please Read these rules carefully.");
+  console.log("We wish all the best");
+</script>
+{% endblock %}

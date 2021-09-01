@@ -1,0 +1,86 @@
+{% extends 'base.html' %}{% load static %}{% block content %}
+
+<link rel="stylesheet" href="{% static 'quiz/quiz.css'%}" />
+
+<style>
+  .content1 {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .container {
+    color: white;
+    background: black;
+  }
+  table,
+  td,
+  th {
+    border: 0.8px solid white;
+    color: white;
+  }
+
+  table,
+  h3 {
+    margin: 1em;
+    font-size: 0.7em;
+  }
+
+  th,
+  td {
+    padding: 1em;
+  }
+
+  div {
+    text-align: center;
+  }
+</style>
+
+<h2>The top {{n }} qualified participants are</h2>
+<div class="content1">
+  <br />
+  <div class="table">
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+
+      {% for player in leaders %}
+      <tr>
+        <td>{{player.rank}}</td>
+        <td>{{player.name }}</td>
+        <td>{{player.score}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <form action="" method="POST" class="stage1">
+    To Promote the players to next level
+    <br />
+    Enter the password below
+    <br />
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+
+  <br />
+
+  <div class="check">
+    {% if lst == 0 %}
+    <p>
+      Please Be sure before entering, <br />
+      There is no going back
+    </p>
+    {% endif %} {% if lst == 1 %}
+    <p>Players promoted</p>
+    {% endif %} {% if lst == 2 %}
+    <p>wrong password</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
